@@ -1,28 +1,20 @@
-import logo from './logo.svg'
-import data from './data/hp-characters.json';
+import React, { useEffect, useState } from 'react';
+import Characters from './components/Characters'
 import './App.css';
 
 function App() {
-  console.log(data[10])
-  return (
-  
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const [character, setCharacter] = useState([]);
+  let getData = async () => {
+    let url = `http://localhost:5000/Characters`;
+    let getFetchData = await fetch(url).then((resul) => resul.json());
+    setCharacter(getFetchData);
+  };
+  useEffect(() => {
+    getData();
+  }, []);
+  console.log(character);
+
+  return 
 }
 
 export default App;
