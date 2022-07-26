@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React , { useEffect, useState } from 'react';
+import PageName from './components/PageName';
 import Characters from './components/Characters'
 import './App.css';
 
@@ -12,9 +13,17 @@ function App() {
   useEffect(() => {
     getData();
   }, []);
-  console.log(character);
 
-  return 
+ return (
+  <>
+  <PageName/>
+  {character &&
+          character.map((character) => (
+            <Characters character={character} key={character.id} />
+          ))}
+</>
+
+ )
 }
 
 export default App;
